@@ -1,7 +1,7 @@
 // Write your "projects" router here!
 const express = require('express')
 const Projects = require('./projects-model')
-const {validateProjectId, validateNewProject, checkCompleted} = require('./projects-middleware')
+const {validateProjectId, validateNewProject,} = require('./projects-middleware')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
@@ -22,7 +22,7 @@ router.get('/:id', validateProjectId, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.put('/:id', validateProjectId, validateNewProject, checkCompleted, (req, res, next) => {
+router.put('/:id', validateProjectId, validateNewProject, (req, res, next) => {
     Projects.update(req.params.id, req.body)
         .then(update => res.status(200).json(update))
         .catch(err => next(err))

@@ -15,18 +15,10 @@ function validateProjectId(req, res, next) {
 
 function validateNewProject(req, res, next) {
 
-    if(!req.body.description || !req.body.name){
-        next({ status: 400, message: `Missing required information! Name: ${req.body.name}, Description: ${req.body.description}` })
+    if(!req.body.description || !req.body.name || typeof req.body.completed === "undefined"){
+        next({ status: 400, message: `Missing required information! Name: ${req.body.name}, Description: ${req.body.description}, Completed: ${req.body.completed}` })
     }
     else {
-        next()
-    }
-}
-
-function checkCompleted(req, res, next) {
-    if(req.body.completed === true){
-        next({status: 400, message: 'Project is already completed'})
-    } else {
         next()
     }
 }
@@ -34,5 +26,4 @@ function checkCompleted(req, res, next) {
   module.exports = {
       validateProjectId,
       validateNewProject,
-      checkCompleted
   }

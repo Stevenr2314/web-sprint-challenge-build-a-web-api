@@ -33,7 +33,7 @@ function validateNewAction(req, res, next) {
                     next()
                 }
             })
-            .catch(err => next(err))
+            .catch(err => next({status: 404, message: `Server couldn't complete this action`}))
     }
 }
 
