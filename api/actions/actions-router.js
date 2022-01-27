@@ -23,7 +23,7 @@ router.get('/:id', validateActionId, (req, res, next) => {
     res.status(200).json(req.action)
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', validateNewAction, (req, res, next) => {
     Actions.update(req.params.id, req.body)
         .then(update => res.status(200).json(update))
         .catch(err => next(err))

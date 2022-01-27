@@ -17,7 +17,7 @@ function validateActionId(req, res, next) {
 
 function validateNewAction(req, res, next) {
 
-    if(!req.body.description || !req.body.project_id || !req.body.notes){
+    if(!req.body.description || !req.body.project_id || !req.body.notes || typeof req.body.completed === "undefined"){
         next({ status: 400, message: `ProjectID: ${req.body.project_id}, Descriptions: ${req.body.description}, Notes: ${req.body.notes}` })
     }
     else if (req.body.description.length > 128) {
